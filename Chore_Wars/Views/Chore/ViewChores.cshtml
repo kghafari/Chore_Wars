@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "ViewChores";
+}
+
+@using Chore_Wars.ViewModels;
+
+@model ViewModelPlayerChore
+
+<style>
+    body {
+        background-image: url(https://i.imgur.com/FPbs9yo.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    #choreListHeader {
+        text-align: center;
+        color: #0ebb18;
+        font-weight: 900;
+    }
+
+    #choreTable {
+        font-weight: 500;
+    }
+</style>
+
+
+<h1 id="choreListHeader">Chore List</h1>
+
+
+<div id="choreTable">
+    <table class="table" style="color:#0ebb18; background-color:WindowText">
+        <tr style="font-weight:900">
+            <th>Assigned To</th>
+            <th>Chore Name</th>
+            <th>Description</th>
+            <th>Point Value</th>
+            <th>Due Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @{var choreList = Model.Chores; }
+        @{var playerList = Model.Players;}
+
+        @foreach (Chore chore in choreList)
+        {
+            <tr>
+                <td>
+                    @if(chore.UserId == null)
+                    {
+                    <span style="color:gold">Unassigned</span>
+                    }
+                    else
+                    {
+                    
+                        foreach (var player in playerList)
+                        {
+                            if (player.UserId == chore.UserId)
+                            {
+                                <p>@player.FirstName</p>
+                            }
+                        }
+                    }
+                </td>
+
+                <td>@chore.ChoreName</td>
+                <td>@chore.ChoreDescription</td>
+                <td>@chore.PointValue</td>
+
+                @{DateTime myDate = (DateTime)chore.DueDate;
+                }
+
+                <td>@myDate.ToShortDateString()</td>
+                <td><a href="../Chore/DeleteChore?id=@chore.ChoreId" class="btn btn-danger">Delete Chore </a></td>
+                <td><a href="../Chore/EditChore?id=@chore.ChoreId" class="btn btn-info">Edit Chore </a></td>
+
+            </tr>
+        }
+    </table>
+</div>
+<br />
+
+<div class="text-center">
+    <a href="../Chore/AddChore" class="btn btn-success">Add New Chore!</a>
+</div>

@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "SelectQuestion";
+}
+
+@using Chore_Wars.ViewModels;
+@model ViewModelPlayerChore
+
+<style>
+    body {
+        background-image: url(https://i.imgur.com/FPbs9yo.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    #choreWarsHeader {
+        text-align: center;
+        color: gold;
+        font-weight: 900
+    }
+
+    #tableHeader {
+        text-align: center;
+        color: #0EBB18;
+        font-weight: 900
+    }
+</style>
+
+<h1 id="choreWarsHeader">Select Question</h1>
+
+<div>
+    <form action="../Question/SelectQuestion" method="post">
+        <div class="col-md-4 offset-md-4">
+            <select class="form-control" name="category">
+                <option value="10">Books</option>
+                <option value="13">Theatre</option>
+                <option value="17">Science & Nature</option>
+                <option value="18">Computers</option>
+                <option value="19">Math</option>
+                <option value="20">Mythology</option>
+                <option value="22">Geography</option>
+                <option value="23">History</option>
+                <option value="25">Art</option>
+                <option value="27">Animals</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 offset-md-4 container" style="display:flex; justify-content: space-between">
+
+                <input class=" btn btn-success" style="width:33%" type="submit" name="difficulty" value="easy" />
+                <input class=" btn btn-warning" style="width:33%" type="submit" name="difficulty" value="medium" />
+                <input class=" btn btn-danger " style="width:33%" type="submit" name="difficulty" value="hard" />
+
+        </div>
+    </form>
+
+    <br />
+
+    <form action="../Question/SelectQuestion" method="post">
+        <div class="col-md-4 offset-md-4 text-center">
+            <input type="hidden" name="apiOrCustom" value="custom" />
+            <input class="btn btn-primary" type="submit" value="Get Household Question" />
+        </div>
+    </form>
+</div>
+
+<br />
+<br />
+
+<div class="container col-md-4 offset-md-4" style="background-color:rgba(0, 0, 0, 0.65); border-radius: 25px">
+    <br />
+    <h1 id="choreWarsHeader">@Model.LoggedInPlayer.FirstName's Stats</h1>
+
+    <div  style="color:gold">
+        <div class="text-center">
+            <br />
+            <div><b>Current Points:</b>   <h4>@Model.LoggedInPlayer.CurrentPoints</h4></div>
+            <br />
+            <div>Total Points Earned: <b>@Model.LoggedInPlayer.TotalPoints</b></div>
+            <div>Correct Answers:   <b>@Model.LoggedInPlayer.CorrectAnswers</b></div>
+            <div>Incorrect Answers: <b>@Model.LoggedInPlayer.IncorrectAnswers</b></div>
+            <br />
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="container col-md-4 offset-md-4" style="color:gold">
+    <a class="btn btn-info btn-block" href="../Chore/BuyChores">BUY CHORES</a>
+</div>
+<br />
+<div class="container col-md-4 offset-md-4" style="color:gold">
+    <a class="btn btn-secondary btn-block" href="../Home/Index">Logout</a>
+</div>
+
+<br />
+<br />
+
+
+
+<h1 id="tableHeader" style="background-color:WindowText">@Model.LoggedInPlayer.FirstName's Chores</h1>
+
+<div class="text-center">
+    <table class="table" style="background-color:WindowText; color:#0EBB18; font-weight:500">
+        <tr>
+            <th>Chore</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Mark Complete</th>
+        </tr>
+
+        @{ foreach (var chore in Model.Chores)
+            {
+                DateTime myDate = (DateTime)chore.DueDate;
+
+                <tr>
+                    <td>@chore.ChoreName</td>
+                    <td>@chore.ChoreDescription</td>
+                    <td>@myDate.ToShortDateString()</td>
+                    <td><a href="../Chore/CompleteChore?id=@chore.ChoreId" class="btn btn-success">Complete Chore </a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

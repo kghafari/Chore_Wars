@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "EditChore";
+}
+
+@model Chore
+
+<style>
+    body {
+        background-image: url(https://i.imgur.com/FPbs9yo.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    #editChoreHeader {
+        text-align: center;
+        color: gold;
+        font-weight: 900;
+    }
+
+    #editChoreForm {
+        text-align: justify;
+        color: gold;
+        font-weight: 900;
+    }
+</style>
+
+<h1 id="editChoreHeader">Edit Chore</h1>
+
+<div class="col-md-4 offset-4 text-center">
+    <form action="../Chore/EditChore" method="post" id="editChoreForm">
+
+        <input type="hidden" name="ChoreId" value="@Model.ChoreId" /> <br />
+        Name: <input class="form-control" type="text" name="ChoreName" maxlength="50" required value="@Model.ChoreName" /><br />
+        Description: <input class="form-control" type="text" name="ChoreDescription" maxlength="250" value="@Model.ChoreDescription" /><br />
+        Point Value: <input class="form-control" type="number" min="1" max="100" name="PointValue" required /><br />
+
+        @{ var myDate = DateTime.Now.ToString("yyyy-MM-dd");}
+        Due Date: <input class="form-control" type="date" name="DueDate" required min="@myDate" /><br />
+
+        <input type="submit" value="Save Changes!" class="btn btn-success btn-block"/>
+        <br /><br />
+
+    </form>
+
+</div>
+

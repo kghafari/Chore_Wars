@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "AddChore";
+}
+<style>
+      #addChoreHeader {
+        text-align: center;
+        color: gold;
+        font-weight: 900;
+    }
+
+    #addChoreForm {
+        text-align: justify;
+        color: gold;
+        font-weight: 900;
+    }
+
+
+    body {
+        background-image: url(https://i.imgur.com/FPbs9yo.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+  
+</style>
+
+<h1 id="addChoreHeader">Add Chore</h1>
+
+<div class="col-md-4 offset-4 text-center">
+    <form id="addChoreForm" action="../Chore/AddChore" method="post">
+        <br />
+        Name: <input class="form-control" type="text" name="ChoreName" maxlength="50" required placeholder="Name" /><br />
+        Description: <input class="form-control" type="text" name="ChoreDescription" maxlength="250" placeholder="Description" /><br />
+        Point Value: <input class="form-control" type="number" min="1" max="100" name="PointValue" required /><br />
+
+        @{ var myDate = DateTime.Now.ToString("yyyy-MM-dd");}
+        Due Date: <input class="form-control" type="date" name="DueDate" required min="@myDate" /><br />
+
+        <input type="submit" value="Submit!" class="btn btn-success btn-block" />
+        <br />
+    </form>
+    </div>

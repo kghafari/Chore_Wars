@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Result";
+}
+<style>
+    body {
+        background-image: url(https://i.imgur.com/FPbs9yo.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    #choreWarsHeader {
+        text-align: center;
+        color: gold;
+        font-weight: 900
+    }
+    #p{
+        color: gold;
+    }
+    #a{
+        color: gold;
+    }
+</style>
+
+
+
+<h1 id="choreWarsHeader">Result:</h1>
+<br />
+
+@model string
+
+<div class="text-center">
+    <h3 style="color:gold">@Model</h3>
+    <br />  
+    <p style="color:gold;"><a class="btn btn-primary" href="../Question/SelectQuestion">Try Again?</a></p>
+</div>
+

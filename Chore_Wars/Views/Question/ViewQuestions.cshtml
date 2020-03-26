@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "ViewQuestions";
+}
+
+@model List<Question>
+<style>
+
+    body {
+        background-image: url(https://i.imgur.com/FPbs9yo.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    body {
+        background-color: powderblue;
+    }
+
+    h1 {
+        color: gold;
+        text-align: center;
+        font-weight: 900;
+    }
+
+    th {
+        color: gold;
+        font-weight: 700;
+    }
+
+    td {
+        color: gold;
+        font-weight: 500;
+    }
+
+    a {
+        color: gold;
+        font-weight: 500;
+    }
+
+    p {
+        text-align:center;
+        color: gold;
+        font-weight: 900;
+    }
+</style>
+<h1>Household Questions</h1>
+
+@if (Model.Any())
+{
+    <table class="table" style="background-color:rgba(0, 0, 0, 0.75)">
+        <tr>
+            <th>Difficulty</th>
+            <th>Question</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (Question question in Model)
+        {
+            <tr>
+                <td>@question.Difficulty</td>
+                <td>@question.Question1</td>
+                <td><a href="../Question/EditQuestion?id=@question.QuestionId">Edit</a></td>
+                <td><a href="../Question/DeleteQuestion?id=@question.QuestionId">Delete</a></td>
+            </tr>
+        }
+    </table>
+}
+else  //validation for when there are no questions in place yet
+{
+    <p>Sorry, there are no questions yet!</p>
+}
+<form action="../Question/AddQuestion" method="get" class="text-center">
+    <input class="btn btn-primary" type="submit" value="Add A Question!" />
+</form>

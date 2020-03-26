@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "AddNewPlayer";
+}
+
+    <style>
+        body {
+            background-image: url(https://i.imgur.com/FPbs9yo.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        #newPlayerHeader {
+            text-align: center;
+            color: gold;
+            font-weight: 900;
+        }
+
+        #newPlayerForm {
+            text-align: justify;
+            color: gold; 
+            font-weight: 900;
+        }
+    </style>
+
+
+    <h1 id="newPlayerHeader">Add New Player</h1>
+
+<div class="col-md-4 offset-4 text-center">
+    <form action="../Household/AddNewPlayer" id="newPlayerForm" method="post">
+        <br /><br />
+            First Name:<input class="form-control" type="text" name="FirstName" placeholder="First Name" required maxlength="30" /><br /><br />
+            Last Name:<input class="form-control" type="text" name="LastName" placeholder="Last Name" required maxlength="30"/><br /><br />
+        <input type="submit" value="Submit!" class="btn btn-success btn-block"/>
+        <br /><br />
+    </form>
+</div>
